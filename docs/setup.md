@@ -44,6 +44,8 @@ Keep the repository path stable. Sign in to ChatGPT interactively; never copy au
 
 PaperSet does not recolour ChatGPT through extension CSS.
 
+The imported theme supplies the default reading-text colour through its native **Foreground** value (the ink field in the import payload). The shipped PaperSet foreground is #485860. The extension's Reading font control can optionally override conversation prose; choose **Use ChatGPT foreground** to return to the native theme.
+
 Copy the current native theme payload:
 
     npm run theme:copy

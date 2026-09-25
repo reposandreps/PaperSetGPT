@@ -21,7 +21,7 @@ The ChatGPT extension has no background service worker and no build step. Its on
 
 The extension makes no network requests. It does not own ChatGPT colours, account settings, authentication, conversations, model traffic, or application state.
 
-`native-theme/paperset-light.import.txt` is the source of truth for the PaperSet ChatGPT colour theme. The current native import format starts with `codex-theme-v1:` and carries the base surface, foreground/ink, accent, contrast, and supported semantic colours. Secondary ChatGPT surfaces and component states are intentionally derived by ChatGPT rather than reproduced with extension selectors.
+`native-theme/paperset-light.import.txt` is the source of truth for the PaperSet ChatGPT colour theme. The current native import format starts with `codex-theme-v1:` and carries the base surface, foreground/ink, accent, contrast, and supported semantic colours. Secondary ChatGPT surfaces and component states are intentionally derived by ChatGPT rather than reproduced with extension selectors. Reading-text colour remains native by default. An optional extension override is limited to semantic conversation prose through one root custom property and bounded message-prose selectors; application chrome, links, code, citations, controls, tool cards, and the composer remain native-themed.
 
 The optional `.agents/skills/paperset-output/` guidance is also outside the browser runtime. PaperSetGPT may copy it for manual Custom Instructions use but never injects it into conversations.
 

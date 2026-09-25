@@ -49,32 +49,41 @@
         <span>
           <strong id="readingFontHeading">Reading font</strong>
           <small>Atkinson is bundled with the extension. Other choices use locally installed fonts; code stays monospace and unavailable fonts fall back to system sans.</small>
+          <small>Text colour follows ChatGPT's native Foreground unless you choose a custom reading colour here.</small>
         </span>
-        <input id="readingFont" type="hidden" value="atkinson">
-        <div class="font-picker">
-          <button
-            type="button"
-            id="readingFontTrigger"
-            class="font-picker-trigger"
-            aria-haspopup="listbox"
-            aria-expanded="false"
-            aria-controls="readingFontList"
-            aria-labelledby="readingFontHeading readingFontLabel"
-          >
-            <span id="readingFontLabel">Atkinson Hyperlegible Next</span>
-            <span class="font-picker-chevron" aria-hidden="true">⌄</span>
-          </button>
-          <div id="readingFontList" class="font-picker-list" role="listbox" aria-label="Reading font" hidden>
-            <div class="font-picker-option" role="option" tabindex="-1" data-value="chatgpt" data-font="chatgpt">ChatGPT default</div>
-            <div class="font-picker-option" role="option" tabindex="-1" data-value="atkinson" data-font="atkinson">Atkinson Hyperlegible Next</div>
-            <div class="font-picker-option" role="option" tabindex="-1" data-value="atkinson-mono" data-font="atkinson-mono">Atkinson Hyperlegible Mono</div>
-            <div class="font-picker-option" role="option" tabindex="-1" data-value="verdana" data-font="verdana">Verdana</div>
-            <div class="font-picker-option" role="option" tabindex="-1" data-value="open-sans" data-font="open-sans">Open Sans</div>
-            <div class="font-picker-option" role="option" tabindex="-1" data-value="arial" data-font="arial">Arial</div>
-            <div class="font-picker-option" role="option" tabindex="-1" data-value="tahoma" data-font="tahoma">Tahoma</div>
-            <div class="font-picker-option" role="option" tabindex="-1" data-value="trebuchet" data-font="trebuchet">Trebuchet MS</div>
-            <div class="font-picker-option" role="option" tabindex="-1" data-value="calibri" data-font="calibri">Calibri</div>
-            <div class="font-picker-option" role="option" tabindex="-1" data-value="century-gothic" data-font="century-gothic">Century Gothic</div>
+        <div class="reading-controls">
+          <input id="readingFont" type="hidden" value="atkinson">
+          <div class="font-picker">
+            <button
+              type="button"
+              id="readingFontTrigger"
+              class="font-picker-trigger"
+              aria-haspopup="listbox"
+              aria-expanded="false"
+              aria-controls="readingFontList"
+              aria-labelledby="readingFontHeading readingFontLabel"
+            >
+              <span id="readingFontLabel">Atkinson Hyperlegible Next</span>
+              <span class="font-picker-chevron" aria-hidden="true">⌄</span>
+            </button>
+            <div id="readingFontList" class="font-picker-list" role="listbox" aria-label="Reading font" hidden>
+              <div class="font-picker-option" role="option" tabindex="-1" data-value="chatgpt" data-font="chatgpt">ChatGPT default</div>
+              <div class="font-picker-option" role="option" tabindex="-1" data-value="atkinson" data-font="atkinson">Atkinson Hyperlegible Next</div>
+              <div class="font-picker-option" role="option" tabindex="-1" data-value="atkinson-mono" data-font="atkinson-mono">Atkinson Hyperlegible Mono</div>
+              <div class="font-picker-option" role="option" tabindex="-1" data-value="verdana" data-font="verdana">Verdana</div>
+              <div class="font-picker-option" role="option" tabindex="-1" data-value="open-sans" data-font="open-sans">Open Sans</div>
+              <div class="font-picker-option" role="option" tabindex="-1" data-value="arial" data-font="arial">Arial</div>
+              <div class="font-picker-option" role="option" tabindex="-1" data-value="tahoma" data-font="tahoma">Tahoma</div>
+              <div class="font-picker-option" role="option" tabindex="-1" data-value="trebuchet" data-font="trebuchet">Trebuchet MS</div>
+              <div class="font-picker-option" role="option" tabindex="-1" data-value="calibri" data-font="calibri">Calibri</div>
+              <div class="font-picker-option" role="option" tabindex="-1" data-value="century-gothic" data-font="century-gothic">Century Gothic</div>
+            </div>
+          </div>
+          <div class="reading-colour-controls" aria-labelledby="readingColourHeading">
+            <strong id="readingColourHeading" class="control-label">Reading text colour</strong>
+            <input id="readingTextColorPicker" type="color" value="#485860" aria-label="Choose custom reading text colour">
+            <input id="readingTextColorHex" type="text" inputmode="text" maxlength="7" autocomplete="off" spellcheck="false" placeholder="Native" aria-label="Reading text colour hex value">
+            <button type="button" id="readingTextColorReset">Use ChatGPT foreground</button>
           </div>
         </div>
       </div>

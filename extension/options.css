@@ -111,11 +111,63 @@ input[type="number"] {
   flex-wrap: wrap;
 }
 
-.font-picker {
-  position: relative;
-  width: 240px;
+.reading-controls {
+  display: grid;
+  gap: 8px;
+  width: 280px;
   max-width: 100%;
   margin-left: auto;
+}
+
+.font-picker {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+}
+
+.reading-colour-controls {
+  display: grid;
+  grid-template-columns: 38px minmax(84px, 1fr);
+  gap: 6px;
+  align-items: center;
+}
+
+.control-label {
+  grid-column: 1 / -1;
+  font-size: 0.78rem;
+  color: var(--paperset-text-muted);
+}
+
+#readingTextColorPicker {
+  width: 38px;
+  height: 34px;
+  padding: 2px;
+  border: 1px solid var(--paperset-border);
+  border-radius: 7px;
+  background: var(--paperset-bg);
+  cursor: pointer;
+}
+
+#readingTextColorHex {
+  min-width: 0;
+  padding: 7px 9px;
+  color: var(--paperset-text);
+  background: var(--paperset-bg);
+  border: 1px solid var(--paperset-border);
+  border-radius: 7px;
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Monaco, Consolas, monospace;
+}
+
+#readingTextColorReset {
+  grid-column: 1 / -1;
+  justify-self: start;
+  padding: 5px 8px;
+  font-size: 0.78rem;
+}
+
+#readingTextColorReset:disabled {
+  cursor: default;
+  opacity: 0.6;
 }
 
 .font-picker-trigger {

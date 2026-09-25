@@ -23,7 +23,7 @@ Requirements: **Brave Browser on macOS, Node.js 22+, and this repository cloned 
    In ChatGPT, open **Settings → Appearance**, use the **Theme import** control, paste the copied value, and confirm the import.
 5. Open ChatGPT and sign in normally.
 
-The extension deliberately does not recolour ChatGPT. ChatGPT's own native theme system owns application colours, so UI updates can continue to map components through OpenAI's semantic theme rules.
+The extension deliberately does not recolour ChatGPT. ChatGPT's own native theme system owns application colours, so UI updates can continue to map components through OpenAI's semantic theme rules. ChatGPT's native **Foreground** remains the default reading-text colour. PaperSetGPT can optionally override conversation prose from the Reading font control, while links, code and application UI remain native-themed. The importable PaperSet theme currently sets native foreground/ink to #485860.
 
 To preview the Brave setup without changing anything:
 
@@ -65,6 +65,8 @@ Full setup and qualification guidance is in `docs/setup.md`. Runtime boundaries 
 
 ## License
 
-PaperSetGPT is free software licensed under the GNU General Public License v3.0 or later (GPL-3.0-or-later). See `LICENSE`.
+Copyright © 2026 PaperSetGPT contributors.
 
-The bundled Atkinson fonts are separately licensed under SIL OFL 1.1; see `extension/fonts/OFL.txt` and `extension/fonts/OFL-Mono.txt`.
+PaperSetGPT is free software licensed under the GNU General Public License v3.0 or later (GPL-3.0-or-later). See LICENSE.
+
+The bundled Atkinson fonts are separately licensed under SIL OFL 1.1; see extension/fonts/OFL.txt and extension/fonts/OFL-Mono.txt. Artwork provenance and third-party licence details are recorded in THIRD_PARTY_NOTICES.md.

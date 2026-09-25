@@ -9,7 +9,8 @@
     lazyImages: true,
     hibernateOldTurns: false,
     keepRecentTurns: 30,
-    readingFont: "atkinson"
+    readingFont: "atkinson",
+    readingTextColor: ""
   });
 
   const booleanKeys = [
@@ -27,6 +28,10 @@
   const readingFontOptions = Array.from(
     readingFontList.querySelectorAll('[role="option"]')
   );
+  const readingTextColorPicker = document.querySelector("#readingTextColorPicker");
+  const readingTextColorHex = document.querySelector("#readingTextColorHex");
+  const readingTextColorReset = document.querySelector("#readingTextColorReset");
+  const NATIVE_FOREGROUND_PREVIEW = "#485860";
   let statusTimer;
 
   function showStatus(message) {
@@ -45,6 +50,25 @@
       : DEFAULT_SETTINGS.keepRecentTurns;
     field.value = String(value);
     return value;
+  }
+
+  function normalizeReadingTextColor(value) {
+    const raw = String(value ?? "").trim();
+    if (!raw) {
+      return "";
+    }
+
+    const candidate = raw.startsWith("#") ? raw : "#" + raw;
+    return /^#[0-9a-f]{6}$/i.test(candidate) ? candidate.toLowerCase() : null;
+  }
+
+  function renderReadingTextColor(value) {
+    const normalized = normalizeReadingTextColor(value);
+    const custom = normalized || "";
+    readingTextColorHex.value = custom;
+    readingTextColorPicker.value = custom || NATIVE_FOREGROUND_PREVIEW;
+    readingTextColorReset.disabled = !custom;
+    readingTextColorHex.setCustomValidity("");
   }
 
   function fontOption(value) {
@@ -108,9 +132,18 @@
   }
 
   function settingsFromForm() {
+    const readingTextColor = normalizeReadingTextColor(readingTextColorHex.value);
+    if (readingTextColor === null) {
+      readingTextColorHex.setCustomValidity("Enter a six-digit hex colour such as #485860, or leave blank for ChatGPT foreground.");
+      readingTextColorHex.reportValidity();
+      return null;
+    }
+
+    readingTextColorHex.setCustomValidity("");
     const next = {
       keepRecentTurns: normalizedRecentTurns(),
-      readingFont: readingFont.value
+      readingFont: readingFont.value,
+      readingTextColor
     };
 
     for (const key of booleanKeys) {
@@ -128,10 +161,15 @@
     document.querySelector("#keepRecentTurns").value = String(settings.keepRecentTurns);
     readingFont.value = settings.readingFont;
     applyReadingFontPreview();
+    renderReadingTextColor(settings.readingTextColor);
   }
 
   async function save() {
     const next = settingsFromForm();
+    if (!next) {
+      return;
+    }
+
     await chrome.storage.local.set(next);
     showStatus("Saved");
   }
@@ -200,6 +238,29 @@
     if (!event.target.closest(".font-picker")) {
       closeReadingFontList();
     }
+  });
+
+  readingTextColorPicker.addEventListener("input", () => {
+    readingTextColorHex.value = readingTextColorPicker.value.toLowerCase();
+    readingTextColorReset.disabled = false;
+    readingTextColorHex.setCustomValidity("");
+  });
+
+  readingTextColorHex.addEventListener("change", (event) => {
+    const normalized = normalizeReadingTextColor(readingTextColorHex.value);
+    if (normalized === null) {
+      readingTextColorHex.setCustomValidity("Enter a six-digit hex colour such as #485860, or leave blank for ChatGPT foreground.");
+      readingTextColorHex.reportValidity();
+      event.stopPropagation();
+      return;
+    }
+
+    renderReadingTextColor(normalized);
+  });
+
+  readingTextColorReset.addEventListener("click", () => {
+    renderReadingTextColor("");
+    void save();
   });
 
   document.querySelector("#settings").addEventListener("change", () => {

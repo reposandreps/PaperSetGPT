@@ -9,7 +9,8 @@
     lazyImages: true,
     hibernateOldTurns: false,
     keepRecentTurns: 30,
-    readingFont: "atkinson"
+    readingFont: "atkinson",
+    readingTextColor: ""
   });
 
   const READING_FONT_CLASS_BY_SETTING = Object.freeze({
@@ -76,6 +77,16 @@
     root().appendChild(link);
   }
 
+  function normalizeReadingTextColor(value) {
+    const raw = String(value ?? "").trim();
+    if (!raw) {
+      return "";
+    }
+
+    const candidate = raw.startsWith("#") ? raw : "#" + raw;
+    return /^#[0-9a-f]{6}$/i.test(candidate) ? candidate.toLowerCase() : "";
+  }
+
   function applyRootClasses() {
     const html = root();
     if (!html) {
@@ -85,6 +96,15 @@
     html.classList.toggle("paperset-reduce-effects", settings.reduceEffects);
     html.classList.toggle("paperset-contain-turns", settings.containTurns);
     html.classList.toggle("paperset-hibernate-old", settings.hibernateOldTurns);
+
+    const readingTextColor = normalizeReadingTextColor(settings.readingTextColor);
+    html.classList.toggle("paperset-reading-colour", Boolean(readingTextColor));
+    if (readingTextColor) {
+      html.style.setProperty("--paperset-reading-text-colour", readingTextColor);
+    } else {
+      html.style.removeProperty("--paperset-reading-text-colour");
+    }
+
     html.classList.remove(...READING_FONT_CLASSES);
 
     const readingFontClass = READING_FONT_CLASS_BY_SETTING[settings.readingFont];
@@ -357,7 +377,8 @@
     settings = {
       ...DEFAULT_SETTINGS,
       ...stored,
-      keepRecentTurns: normalizeKeepRecent(stored.keepRecentTurns)
+      keepRecentTurns: normalizeKeepRecent(stored.keepRecentTurns),
+      readingTextColor: normalizeReadingTextColor(stored.readingTextColor)
     };
   }
 
@@ -385,7 +406,9 @@
       if (key in DEFAULT_SETTINGS) {
         settings[key] = key === "keepRecentTurns"
           ? normalizeKeepRecent(change.newValue)
-          : change.newValue;
+          : key === "readingTextColor"
+            ? normalizeReadingTextColor(change.newValue)
+            : change.newValue;
       }
     }
 

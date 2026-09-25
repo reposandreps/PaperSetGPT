@@ -148,6 +148,9 @@ test("reading font picker stays accessible and code remains monospace", async ()
   assert.match(optionsHtml, /id="readingFontTrigger"/);
   assert.match(optionsHtml, /aria-haspopup="listbox"/);
   assert.match(optionsHtml, /id="readingFontList"[^>]*role="listbox"/);
+  assert.match(optionsHtml, /id="readingTextColorPicker"[^>]*type="color"/);
+  assert.match(optionsHtml, /id="readingTextColorHex"[^>]*placeholder="Native"/);
+  assert.match(optionsHtml, /id="readingTextColorReset"/);
 
   for (const value of ["chatgpt", "atkinson", "atkinson-mono", "verdana", "open-sans", "arial", "tahoma", "trebuchet", "calibri", "century-gothic"]) {
     assert.ok(optionsHtml.includes(`data-value="${value}"`));
@@ -161,6 +164,47 @@ test("reading font picker stays accessible and code remains monospace", async ()
   assert.match(contentRuntime, /chrome\.runtime\.getURL\("fonts\.css"\)/);
   assert.match(styles, /html\[class\*="paperset-font-"\] pre/);
   assert.match(styles, /var\(--font-mono\), ui-monospace/);
+});
+
+
+test("optional reading text colour stays native by default and prose-scoped", async () => {
+  const optionsHtml = await readFile(optionsHtmlUrl, "utf8");
+  const optionsRuntime = await readFile(optionsRuntimeUrl, "utf8");
+  const contentRuntime = await readFile(contentRuntimeUrl, "utf8");
+  const styles = await readFile(contentStylesUrl, "utf8");
+
+  for (const runtime of [optionsRuntime, contentRuntime]) {
+    assert.match(runtime, /readingTextColor:\s*""/);
+    assert.match(runtime, /function normalizeReadingTextColor\(value\)/);
+    assert.match(runtime, /\/\^#\[0-9a-f\]\{6\}\$\/i/);
+  }
+
+  assert.match(optionsRuntime, /readingTextColorReset\.addEventListener\("click"/);
+  assert.match(optionsRuntime, /renderReadingTextColor\(""\)/);
+  assert.match(optionsRuntime, /event\.stopPropagation\(\)/);
+  assert.match(contentRuntime, /style\.setProperty\("--paperset-reading-text-colour"/);
+  assert.match(contentRuntime, /style\.removeProperty\("--paperset-reading-text-colour"/);
+
+  assert.match(styles, /html\.paperset-reading-colour \.paperset-turn \[data-message-author-role\] :where\(/);
+  for (const proseTag of ["p", "li", "blockquote", "h1", "th", "td"]) {
+    assert.ok(styles.includes("  " + proseTag + ",") || styles.includes("  " + proseTag + String.fromCharCode(10)));
+  }
+
+  assert.doesNotMatch(styles, /paperset-reading-colour\s+body/);
+  assert.doesNotMatch(styles, /paperset-reading-colour\s+\*/);
+  assert.doesNotMatch(styles, /--paperset-reading-text-colour\)\s*!important/);
+  const readingColourRule = styles.slice(
+    styles.indexOf("html.paperset-reading-colour"),
+    styles.indexOf("html.paperset-reduce-effects")
+  );
+  for (const excluded of [" a,", " code,", " pre,", " button,", "[role=\"button\"]"]) {
+    assert.equal(readingColourRule.includes(excluded), false);
+  }
+
+  assert.match(optionsRuntime, /raw\.startsWith\("#"\) \? raw : "#" \+ raw/);
+  assert.match(optionsRuntime, /candidate\.toLowerCase\(\) : null/);
+  assert.match(contentRuntime, /candidate\.toLowerCase\(\) : ""/);
+  assert.match(optionsHtml, /Use ChatGPT foreground/);
 });
 
 test("native PaperSet theme payload is valid and carries the canonical visual anchors", async () => {
@@ -177,7 +221,7 @@ test("native PaperSet theme payload is valid and carries the canonical visual an
   assert.equal(payload.codeThemeId, "everforest");
   assert.equal(payload.theme.surface.toLowerCase(), "#fdf6e3");
   assert.equal(payload.theme.ink.toLowerCase(), "#485860");
-  assert.equal(payload.theme.accent.toLowerCase(), "#7ac388");
+  assert.equal(payload.theme.accent.toLowerCase(), "#5f7565");
   assert.equal(payload.theme.accentSource, "custom");
   assert.equal(payload.theme.contrast, 42);
   assert.deepEqual(payload.theme.fonts, { code: null, ui: null });
