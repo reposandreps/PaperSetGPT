@@ -1,0 +1,51 @@
+/* Reading-font choices are local-only. Unknown/uninstalled faces fall through to ChatGPT/system sans. */
+html.paperset-font-atkinson { --paperset-reading-font: "PaperSet Atkinson Hyperlegible Next"; }
+html.paperset-font-atkinson-mono { --paperset-reading-font: "PaperSet Atkinson Hyperlegible Mono"; }
+html.paperset-font-verdana { --paperset-reading-font: Verdana; }
+html.paperset-font-open-sans { --paperset-reading-font: "Open Sans"; }
+html.paperset-font-arial { --paperset-reading-font: Arial; }
+html.paperset-font-tahoma { --paperset-reading-font: Tahoma; }
+html.paperset-font-trebuchet { --paperset-reading-font: "Trebuchet MS"; }
+html.paperset-font-calibri { --paperset-reading-font: Calibri; }
+html.paperset-font-century-gothic { --paperset-reading-font: "Century Gothic"; }
+
+html[class*="paperset-font-"] {
+  --font-sans: var(--paperset-reading-font), ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+  font-family: var(--font-sans) !important;
+}
+
+html[class*="paperset-font-"] body {
+  font-family: var(--font-sans) !important;
+}
+
+html[class*="paperset-font-"] pre,
+html[class*="paperset-font-"] code,
+html[class*="paperset-font-"] kbd,
+html[class*="paperset-font-"] samp {
+  font-family: var(--font-mono), ui-monospace, "SFMono-Regular", Menlo, Monaco, Consolas, monospace !important;
+}
+
+html.paperset-reduce-effects {
+  scroll-behavior: auto !important;
+}
+
+html.paperset-reduce-effects [class*="backdrop-blur"],
+html.paperset-reduce-effects [style*="backdrop-filter"] {
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+/*
+ * This is the safe default optimization: Chromium may skip rendering distant turns
+ * while their normal document flow and browser accessibility semantics remain intact.
+ */
+html.paperset-contain-turns .paperset-turn {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 240px;
+}
+
+/* Optional aggressive mode; JS preserves measured height and restores turns near the viewport. */
+html.paperset-hibernate-old .paperset-turn.paperset-hibernated {
+  content-visibility: hidden !important;
+  contain-intrinsic-block-size: var(--paperset-turn-height, 240px);
+}

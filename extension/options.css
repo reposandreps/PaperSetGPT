@@ -1,0 +1,213 @@
+:root {
+  color-scheme: light;
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --paperset-bg: #fdf6e3;
+  --paperset-surface: #eeead3;
+  --paperset-surface-strong: #e2e1ca;
+  --paperset-text: #485860;
+  --paperset-text-muted: #708070;
+  --paperset-border: #d8d1b8;
+  --paperset-accent-soft: #d9f0db;
+  --paperset-accent-mid: #abcfb1;
+  --paperset-accent: #7ac388;
+  --paperset-accent-text: #5f7565;
+  background: var(--paperset-bg);
+  color: var(--paperset-text);
+}
+
+body {
+  margin: 0;
+  min-width: 0;
+  background: var(--paperset-bg);
+}
+
+main {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+h1 {
+  margin: 0 0 6px;
+  font-size: 1.5rem;
+}
+
+.intro {
+  margin: 0 0 20px;
+  color: var(--paperset-text-muted);
+}
+
+form {
+  display: grid;
+  gap: 10px;
+}
+
+label,
+.setting-row {
+  border: 1px solid var(--paperset-border);
+  border-radius: 10px;
+  background: var(--paperset-surface);
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 12px;
+}
+
+label > span,
+.setting-row > span {
+  display: grid;
+  gap: 3px;
+  flex: 1;
+}
+
+small {
+  color: var(--paperset-text-muted);
+  line-height: 1.35;
+}
+
+code {
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Monaco, Consolas, monospace;
+}
+
+.number-setting,
+.select-setting {
+  align-items: center;
+}
+
+input[type="checkbox"] {
+  accent-color: var(--paperset-accent);
+}
+
+input[type="number"] {
+  width: 72px;
+  padding: 6px 8px;
+  color: var(--paperset-text);
+  background: var(--paperset-bg);
+  border: 1px solid var(--paperset-border);
+  border-radius: 7px;
+}
+
+[data-font="chatgpt"] {
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+[data-font="atkinson"] {
+  font-family: "PaperSet Atkinson Hyperlegible Next", ui-sans-serif, sans-serif;
+}
+
+[data-font="atkinson-mono"] {
+  font-family: "PaperSet Atkinson Hyperlegible Mono", ui-monospace, monospace;
+}
+
+[data-font="verdana"] { font-family: Verdana, ui-sans-serif, sans-serif; }
+[data-font="open-sans"] { font-family: "Open Sans", ui-sans-serif, sans-serif; }
+[data-font="arial"] { font-family: Arial, ui-sans-serif, sans-serif; }
+[data-font="tahoma"] { font-family: Tahoma, ui-sans-serif, sans-serif; }
+[data-font="trebuchet"] { font-family: "Trebuchet MS", ui-sans-serif, sans-serif; }
+[data-font="calibri"] { font-family: Calibri, ui-sans-serif, sans-serif; }
+[data-font="century-gothic"] { font-family: "Century Gothic", ui-sans-serif, sans-serif; }
+
+.font-setting {
+  flex-wrap: wrap;
+}
+
+.font-picker {
+  position: relative;
+  width: 240px;
+  max-width: 100%;
+  margin-left: auto;
+}
+
+.font-picker-trigger {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 7px 9px;
+  border: 1px solid var(--paperset-border);
+  border-radius: 7px;
+  background: var(--paperset-bg);
+  color: var(--paperset-text);
+  text-align: left;
+}
+
+.font-picker-trigger:hover {
+  border-color: var(--paperset-accent);
+}
+
+.font-picker-chevron {
+  flex: none;
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.font-picker-list {
+  position: absolute;
+  z-index: 10;
+  top: calc(100% + 5px);
+  right: 0;
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid var(--paperset-border);
+  border-radius: 9px;
+  background: var(--paperset-bg);
+  box-shadow: 0 3px 12px color-mix(in srgb, var(--paperset-text) 12%, transparent);
+}
+
+.font-picker-list[hidden] {
+  display: none;
+}
+
+.font-picker-option {
+  padding: 8px 10px;
+  cursor: pointer;
+  color: var(--paperset-text);
+  background: var(--paperset-bg);
+}
+
+.font-picker-option[aria-selected="true"] {
+  background: var(--paperset-accent-soft);
+}
+
+.font-picker-option:hover,
+.font-picker-option:focus-visible {
+  background: var(--paperset-surface-strong);
+}
+
+.font-picker-option:focus-visible,
+input:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--paperset-accent);
+  outline-offset: 2px;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+button {
+  padding: 8px 12px;
+  border: 1px solid var(--paperset-accent-mid);
+  border-radius: 8px;
+  background: var(--paperset-accent-soft);
+  color: var(--paperset-text);
+  cursor: pointer;
+}
+
+button:hover {
+  border-color: var(--paperset-accent);
+  background: var(--paperset-surface-strong);
+}
+
+#status {
+  color: var(--paperset-accent-text);
+}
+
+@media (max-width: 520px) {
+  main {
+    padding: 16px;
+  }
+}

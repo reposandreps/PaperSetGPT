@@ -1,0 +1,41 @@
+{
+  "manifest_version": 3,
+  "name": "PaperSetGPT",
+  "version": "0.1.0",
+  "description": "Native ChatGPT theming plus local reading and performance controls for Brave.",
+  "permissions": [
+    "storage"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://chatgpt.com/*",
+        "https://chat.openai.com/*"
+      ],
+      "css": [
+        "content.css"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_start"
+    }
+  ],
+  "options_page": "options.html",
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "fonts.css",
+        "fonts/AtkinsonHyperlegibleNext-Variable.ttf",
+        "fonts/AtkinsonHyperlegibleNext-Italic-Variable.ttf",
+        "fonts/AtkinsonHyperlegibleMono-Variable.ttf",
+        "fonts/AtkinsonHyperlegibleMono-Italic-Variable.ttf"
+      ],
+      "matches": [
+        "https://chatgpt.com/*",
+        "https://chat.openai.com/*"
+      ]
+    }
+  ],
+  "homepage_url": "https://github.com/reposandreps/PaperSetGPT"
+}

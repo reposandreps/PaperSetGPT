@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PaperSetGPT settings</title>
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <main>
+    <h1>PaperSetGPT</h1>
+    <p class="intro">Local reading and rendering controls. ChatGPT colours are owned by the native PaperSet theme.</p>
+
+    <form id="settings">
+      <label>
+        <input id="reduceEffects" type="checkbox">
+        <span>
+          <strong>Disable blur & smooth scrolling (experimental)</strong>
+          <small>Performance-only. Independent of ChatGPT's native Reduce motion setting; leave off unless it measurably helps.</small>
+        </span>
+      </label>
+
+      <label>
+        <input id="containTurns" type="checkbox">
+        <span>
+          <strong>Contain off-screen conversation turns</strong>
+          <small>Safe default. Uses Chromium <code>content-visibility: auto</code> so distant turns can skip rendering work while keeping normal document flow.</small>
+        </span>
+      </label>
+
+      <label>
+        <input id="lazyImages" type="checkbox">
+        <span>
+          <strong>Use lazy image/decode hints</strong>
+          <small>Requests browser-native lazy loading and asynchronous image decode where ChatGPT has not already set them.</small>
+        </span>
+      </label>
+
+      <label>
+        <input id="hibernateOldTurns" type="checkbox">
+        <span>
+          <strong>Hibernate old turns</strong>
+          <small>Experimental and separate from containment. Hides far-away old-turn rendering while preserving measured height; browser Find or accessibility may be affected until restored.</small>
+        </span>
+      </label>
+
+      <div class="setting-row select-setting font-setting">
+        <span>
+          <strong id="readingFontHeading">Reading font</strong>
+          <small>Atkinson is bundled with the extension. Other choices use locally installed fonts; code stays monospace and unavailable fonts fall back to system sans.</small>
+        </span>
+        <input id="readingFont" type="hidden" value="atkinson">
+        <div class="font-picker">
+          <button
+            type="button"
+            id="readingFontTrigger"
+            class="font-picker-trigger"
+            aria-haspopup="listbox"
+            aria-expanded="false"
+            aria-controls="readingFontList"
+            aria-labelledby="readingFontHeading readingFontLabel"
+          >
+            <span id="readingFontLabel">Atkinson Hyperlegible Next</span>
+            <span class="font-picker-chevron" aria-hidden="true">⌄</span>
+          </button>
+          <div id="readingFontList" class="font-picker-list" role="listbox" aria-label="Reading font" hidden>
+            <div class="font-picker-option" role="option" tabindex="-1" data-value="chatgpt" data-font="chatgpt">ChatGPT default</div>
+            <div class="font-picker-option" role="option" tabindex="-1" data-value="atkinson" data-font="atkinson">Atkinson Hyperlegible Next</div>
+            <div class="font-picker-option" role="option" tabindex="-1" data-value="atkinson-mono" data-font="atkinson-mono">Atkinson Hyperlegible Mono</div>
+            <div class="font-picker-option" role="option" tabindex="-1" data-value="verdana" data-font="verdana">Verdana</div>
+            <div class="font-picker-option" role="option" tabindex="-1" data-value="open-sans" data-font="open-sans">Open Sans</div>
+            <div class="font-picker-option" role="option" tabindex="-1" data-value="arial" data-font="arial">Arial</div>
+            <div class="font-picker-option" role="option" tabindex="-1" data-value="tahoma" data-font="tahoma">Tahoma</div>
+            <div class="font-picker-option" role="option" tabindex="-1" data-value="trebuchet" data-font="trebuchet">Trebuchet MS</div>
+            <div class="font-picker-option" role="option" tabindex="-1" data-value="calibri" data-font="calibri">Calibri</div>
+            <div class="font-picker-option" role="option" tabindex="-1" data-value="century-gothic" data-font="century-gothic">Century Gothic</div>
+          </div>
+        </div>
+      </div>
+
+      <label class="number-setting">
+        <span>
+          <strong>Recent turns kept active</strong>
+          <small>Used only when old-turn hibernation is enabled.</small>
+        </span>
+        <input id="keepRecentTurns" type="number" min="5" max="100" step="1">
+      </label>
+
+      <div class="actions">
+        <button type="button" id="reset">Restore safe defaults</button>
+        <output id="status" aria-live="polite"></output>
+      </div>
+    </form>
+  </main>
+
+  <script src="options.js"></script>
+</body>
+</html>

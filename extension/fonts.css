@@ -1,0 +1,46 @@
+/*
+ * Atkinson Hyperlegible Next
+ * Copyright 2020-2024 The Atkinson Hyperlegible Next Project Authors
+ * SIL Open Font License 1.1 — see fonts/OFL.txt.
+ * Source: google/fonts commit e44c4b011a820c2cbe2fd2cfa8052037d7edb571.
+ * Upstream variable font filenames are normalized locally for extension URLs.
+ */
+@font-face {
+  font-family: "PaperSet Atkinson Hyperlegible Next";
+  src: url("fonts/AtkinsonHyperlegibleNext-Variable.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PaperSet Atkinson Hyperlegible Next";
+  src: url("fonts/AtkinsonHyperlegibleNext-Italic-Variable.ttf") format("truetype");
+  font-style: italic;
+  font-weight: 200 800;
+  font-display: swap;
+}
+
+
+/*
+ * Atkinson Hyperlegible Mono
+ * Copyright 2020-2024 The Atkinson Hyperlegible Mono Project Authors
+ * SIL Open Font License 1.1 — see fonts/OFL-Mono.txt.
+ * Source: google/fonts commit e44c4b011a820c2cbe2fd2cfa8052037d7edb571.
+ * Upstream variable font filenames are normalized locally for extension URLs.
+ */
+@font-face {
+  font-family: "PaperSet Atkinson Hyperlegible Mono";
+  src: url("fonts/AtkinsonHyperlegibleMono-Variable.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PaperSet Atkinson Hyperlegible Mono";
+  src: url("fonts/AtkinsonHyperlegibleMono-Italic-Variable.ttf") format("truetype");
+  font-style: italic;
+  font-weight: 200 800;
+  font-display: swap;
+}

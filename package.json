@@ -1,0 +1,23 @@
+{
+  "name": "papersetgpt",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "test": "node --test && node --check extension/content.js && node --check extension/options.js && node --check scripts/configure-brave-profile.mjs && node --check scripts/qualify-live.mjs && node --check scripts/copy-theme.mjs",
+    "setup": "node scripts/configure-brave-profile.mjs",
+    "launch": "bash scripts/launch-brave.sh",
+    "qualify": "node scripts/qualify-live.mjs",
+    "output-style:copy": "node scripts/copy-output-style.mjs",
+    "theme:copy": "node scripts/copy-theme.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "description": "A native-themed, readability-focused ChatGPT environment for Brave.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/reposandreps/PaperSetGPT.git"
+  },
+  "homepage": "https://github.com/reposandreps/PaperSetGPT",
+  "license": "GPL-3.0-or-later"
+}

@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "profileName": "ChatGPT",
+  "defaultProfileDirectory": "ChatGPT",
+  "profileSettings": {
+    "brave.tabs.vertical_tabs_enabled": true,
+    "brave.tabs.vertical_tabs_hide_completely_when_collapsed": true,
+    "brave.tabs.vertical_tabs_show_toggle_button": true,
+    "brave.tabs.tree_tabs_enabled": false,
+    "brave.tabs.vertical_tabs_expanded_state_per_window": false,
+    "brave.show_bookmarks_button": false,
+    "brave.show_side_panel_button": true,
+    "brave.ai_chat.show_toolbar_button": false,
+    "brave.brave_vpn.show_button": false,
+    "brave.wallet.show_wallet_icon_on_toolbar": false,
+    "brave.today.should_show_toolbar_button": false,
+    "browser.show_forward_button": true,
+    "browser.show_home_button": false,
+    "brave.new_tab_page.shows_options": 1,
+    "homepage": "https://chatgpt.com/",
+    "homepage_is_newtabpage": false,
+    "toolbar.pinned_actions": [],
+    "search.suggest_enabled": false,
+    "brave.enable_media_router_on_restart": false,
+    "brave.web_discovery_enabled": false,
+    "brave.new_tab_page.show_background_image": false,
+    "brave.new_tab_page.show_branded_background_image": false,
+    "brave.new_tab_page.show_rewards": false,
+    "brave.new_tab_page.show_brave_vpn": false,
+    "brave.new_tab_page.show_stats": false,
+    "brave.new_tab_page.show_together": false
+  },
+  "rawProfilePreferences": {
+    "brave.tabs.vertical_tabs_collapsed": true,
+    "brave.tabs.vertical_tabs_expanded_width": 96,
+    "brave.tabs.vertical_tabs_floating_enabled": true,
+    "brave.tabs.vertical_tabs_on_right": false,
+    "brave.tabs.vertical_tabs_show_scrollbar": false,
+    "brave.show_screenshot_button": false,
+    "media_router.enable_media_router": false,
+    "tab_search.pinned_to_tabstrip": false
+  },
+  "sharedSettings": {
+    "background_mode.enabled": false,
+    "hardware_acceleration_mode.enabled": true,
+    "performance_tuning.high_efficiency_mode.state": 2,
+    "performance_tuning.battery_saver_mode.state": 1
+  }
+}

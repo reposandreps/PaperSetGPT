@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "PaperSetGPT Browser Theme",
+  "version": "0.1.0",
+  "description": "Profile-scoped warm browser chrome theme for PaperSetGPT.",
+  "theme": {
+    "colors": {
+      "frame": [95, 117, 101],
+      "frame_inactive": [95, 117, 101],
+      "toolbar": [253, 246, 227],
+      "tab_text": [72, 88, 96],
+      "tab_background_text": [72, 88, 96],
+      "tab_background_text_inactive": [72, 88, 96],
+      "bookmark_text": [72, 88, 96],
+      "toolbar_button_icon": [72, 88, 96],
+      "omnibox_background": [238, 234, 211],
+      "omnibox_text": [72, 88, 96],
+      "ntp_background": [253, 246, 227],
+      "ntp_text": [72, 88, 96],
+      "button_background": [238, 234, 211]
+    }
+  }
+}
