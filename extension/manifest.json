@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "PaperSetGPT",
   "version": "0.1.0",
-  "description": "Native ChatGPT theming plus local reading and performance controls for Brave.",
+  "description": "Readability and lightweight rendering controls for ChatGPT.",
   "permissions": [
     "storage"
   ],
@@ -37,5 +37,11 @@
       ]
     }
   ],
-  "homepage_url": "https://github.com/reposandreps/PaperSetGPT"
+  "homepage_url": "https://github.com/reposandreps/PaperSetGPT",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
 }

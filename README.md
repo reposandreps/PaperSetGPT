@@ -52,7 +52,7 @@ Paste it into ChatGPT Custom Instructions only if you want that output style. Pa
 - `scripts/configure-brave-profile.mjs` — idempotent one-time macOS profile configurator.
 - `.agents/skills/paperset-output/` — optional standalone guidance for progressive, readable agent responses.
 
-Full setup and qualification guidance is in `docs/setup.md`. Runtime boundaries are in `docs/architecture.md`. PaperSetGPT's data-handling statement is in `PRIVACY.md`.
+Full setup and qualification guidance is in `docs/setup.md`. Runtime boundaries are in `docs/architecture.md`. PaperSetGPT's data-handling statement is in `PRIVACY.md`. Chrome Web Store packaging and submission fields are in `docs/chrome-web-store.md`.
 
 ## Project boundaries
 

@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
+import { access, readFile } from "node:fs/promises";
 import test from "node:test";
 
 const manifest = JSON.parse(
@@ -59,4 +59,18 @@ test("browser theme is declarative and permissionless", () => {
   assert.deepEqual(browserTheme.theme.colors.toolbar, [253, 246, 227]);
   assert.deepEqual(browserTheme.theme.colors.tab_background_text, [72, 88, 96]);
   assert.deepEqual(browserTheme.theme.colors.tab_background_text_inactive, [72, 88, 96]);
+});
+
+
+test("extension ships Chrome Web Store icon sizes", async () => {
+  assert.deepEqual(manifest.icons, {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png",
+  });
+
+  for (const icon of Object.values(manifest.icons)) {
+    await access(new URL(`../extension/${icon}`, import.meta.url));
+  }
 });

@@ -3,12 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "test": "node --test && node --check extension/content.js && node --check extension/options.js && node --check scripts/configure-brave-profile.mjs && node --check scripts/qualify-live.mjs && node --check scripts/copy-theme.mjs",
+    "test": "node --test && node --check extension/content.js && node --check extension/options.js && node --check scripts/configure-brave-profile.mjs && node --check scripts/qualify-live.mjs && node --check scripts/copy-theme.mjs && node --check scripts/package-extension.mjs",
     "setup": "node scripts/configure-brave-profile.mjs",
     "launch": "bash scripts/launch-brave.sh",
     "qualify": "node scripts/qualify-live.mjs",
     "output-style:copy": "node scripts/copy-output-style.mjs",
-    "theme:copy": "node scripts/copy-theme.mjs"
+    "theme:copy": "node scripts/copy-theme.mjs",
+    "store:package": "node scripts/package-extension.mjs"
   },
   "engines": {
     "node": ">=22"
