@@ -22,7 +22,7 @@ The generated upload file is:
 
     .artifacts/chrome-web-store/papersetgpt-chrome-web-store-v<version>.zip
 
-`manifest.json` is at the ZP root. The package also includes the project licence and third-party notices. `.artifacts/` is ignored by Git.
+`manifest.json` is at the ZIP root. The package also includes the project licence and third-party notices. `.artifacts/` is ignored by Git.
 
 ## Store listing
 
@@ -50,7 +50,7 @@ The wider open-source PaperSetGPT repository also contains an optional Brave pro
 
 - Store icon: `assets/brand/papersetgpt-typewriter-icon-128.png`
 - Screenshot: `assets/store/papersetgpt-overview-640x400.jpg`
-- Small promo tile: `assets/store/papersetgpt-promo-440x280.jpgg`
+- Small promo tile: `assets/store/papersetgpt-promo-440x280.jpg`
 - Marquee promo image: optional; not currently supplied.
 
 The package itself contains 16, 32, 48, and 128 px versions of the PaperSetGPT icon under `extension/icons/`.
